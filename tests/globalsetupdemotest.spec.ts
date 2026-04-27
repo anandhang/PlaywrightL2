@@ -12,16 +12,19 @@ test.afterEach(async () => {
   UIObject = null as any; 
 });
 
-test('Assignment 2 Test case', async ({ page }) => {
+test('Assignment 4 Test case Day 27-April-2026', async ({ page }) => {
   await UIObject.loginPage.goTo(page);
   
   const productName: string = "iphone 13 pro";
   await UIObject.productPage.addProduct(productName);
   await UIObject.productPage.addToCard();
+  await page.waitForLoadState('networkidle');
+  await page.waitForLoadState('load');
   await UIObject.checkoutPage1.checkoutProduct();
   //await page.pause();
   await UIObject.paymentPage1.selectCountry("India");
   await UIObject.paymentPage1.clickOnPlaceOrder();
   await UIObject.orderDetailsPage.expectedMessage("Thankyou for the order.");
+  
   await UIObject.orderDetailsPage.downloadOrderDetails("order1");
 });

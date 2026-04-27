@@ -1,28 +1,34 @@
-import { chromium, FullConfig } from '@playwright/test';
+import { FullConfig, chromium, firefox, webkit } from '@playwright/test';
 
-async function globalSetup(config: FullConfig) {
-  const browser = await chromium.launch({ headless: false, slowMo: 500 }); 
-  console.log("Global setup starting...");
-  const page = await browser.newPage();
+async function globalSetup(config: FullConfig) 
+{
+  for (const browserType of [chromium, firefox, webkit]) 
+    {
+    const browser = await browserType.launch({ headless: false, slowMo: 500 }); 
+    console.log("Global setup starting...");
+    const page = await browser.newPage();
 
-  // Perform login
-  await page.goto('https://rahulshettyacademy.com/client/#/auth/login');
-  console.log("Navigated to login page");
-  await page.fill('#userEmail', 'anantsmail@gmail.com');
-  await page.fill('#userPassword', 'Imagine@123');
-  await page.click('#login');
-  console.log("Login submitted");
+    const baseURL = config.projects[0].use?.baseURL;
+    if (!baseURL) {
+      throw new Error("No baseURL defined in config.projects[0].use");
+    }
 
-  // Wait until network is idle (page fully loaded)
-  await page.waitForLoadState('networkidle');
-  console.log("Page loaded after login");
+    // Perform login
+    await page.goto(baseURL);
+    
+    console.log("Navigated to login page");
+    await page.fill('#userEmail', 'anantsmail@gmail.com');
+    await page.fill('#userPassword', 'Imagine@123');
+    await page.click('#login');
 
-  // Save authentication state to file
-  await page.context().storageState({ path: 'state.json' });
-  console.log("Storage state saved to state.json");
+    // Wait until network is idle (page fully loaded)
+    await page.waitForLoadState('networkidle');
 
-  await browser.close();
-  console.log("Global setup finished");
+    // Save authentication state to file
+    await page.context().storageState({ path: `state-${browserType.name()}.json` });
+    console.log(`Storage state saved to - ${browserType.name()}.json`);
+    await page.close();
+  }
 }
 
 export default globalSetup;
