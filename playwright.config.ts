@@ -26,6 +26,7 @@ export default defineConfig({
   reporter: [
     ['line'],
     ['html', {open: 'always'}],
+    ['allure-playwright']
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
 
@@ -51,20 +52,20 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
-     {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'], storageState: 'state-chromium.json' },
-    },
+    //  {
+    //   name: 'chromium',
+    //   use: { ...devices['Desktop Chrome'], storageState: 'state-chromium.json' },
+    // },
 
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'], storageState: 'state-firefox.json' },
-    },
+    // {
+    //   name: 'firefox',
+    //   use: { ...devices['Desktop Firefox'], storageState: 'state-firefox.json' },
+    // },
 
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'], storageState: 'state-webkit.json' },
-    }, 
+    // {
+    //   name: 'webkit',
+    //   use: { ...devices['Desktop Safari'], storageState: 'state-webkit.json' },
+    // }, 
 
     /* Test against mobile viewports. */
     // {
@@ -81,11 +82,11 @@ export default defineConfig({
     //   name: 'Microsoft Edge',
     //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
     // },
-   /*  {
+    {
        name: 'Google Chrome',
        use: { ...devices['Desktop Chrome'], channel: 'chrome',headless:false }
        
-     },  */
+     },
   ],
 
   /* Run your local dev server before starting the tests */
