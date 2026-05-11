@@ -11,8 +11,8 @@ test.beforeEach(async ({ page }) => {
 test.afterEach(async () => {
   UIObject = null as any; 
 });
-test.describe("Reties Test case", () => {
-  test('Test case 1 Retries - Day 28-April-2026', async ({ page }, testInfo) => {
+test.describe.serial("Reties Test case", () => {
+  test('Test case 1 Retries ', async ({ page }, testInfo) => {
 
     if(testInfo.retry > 0)
     {
@@ -33,7 +33,7 @@ test.describe("Reties Test case", () => {
     await UIObject.orderDetailsPage.downloadOrderDetails("order1");
   });
 
-  test('Test case 2 Retries - Day 28-April-2026', async ({ page }, testInfo) => {
+  test('Test case 2 Retries ', async ({ page }, testInfo) => {
     if(testInfo.retry > 0)
     {
       console.log("running retry, Clearing cache"+testInfo.retry);
@@ -41,7 +41,7 @@ test.describe("Reties Test case", () => {
 
     await UIObject.loginPage.goTo(page);
     
-    const productName: string = "iphone 13 pro";
+    const productName: string = "ADIDAS ORIGINAL";
     await UIObject.productPage.addProduct(productName);
     await UIObject.productPage.addToCard();
     await page.waitForLoadState('networkidle');
@@ -55,14 +55,14 @@ test.describe("Reties Test case", () => {
   });
 
 
-  test('Test case 3 Retries - Day 28-April-2026', async ({ page }, testInfo) => {
+  test('Test case 3 Retries ', async ({ page }, testInfo) => {
     if(testInfo.retry > 0)
     {
       console.log("running retry, Clearing cache"+testInfo.retry);
     }
     await UIObject.loginPage.goTo(page);
     
-    const productName: string = "iphone 13 pro";
+    const productName: string = "ZARA COAT 3";
     await UIObject.productPage.addProduct(productName);
     await UIObject.productPage.addToCard();
     await page.waitForLoadState('networkidle');

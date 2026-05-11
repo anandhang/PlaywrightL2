@@ -1,6 +1,6 @@
 import { FullConfig, chromium, firefox, webkit } from '@playwright/test';
 
-/* async function globalSetup(config: FullConfig) 
+async function globalSetup(config: FullConfig) 
 {
   for (const browserType of [chromium, firefox, webkit]) 
     {
@@ -29,8 +29,8 @@ import { FullConfig, chromium, firefox, webkit } from '@playwright/test';
     console.log(`Storage state saved to - ${browserType.name()}.json`);
     await page.close();
   }
-} */
-
+}
+/* 
 async function globalSetup(config: FullConfig) 
 {
     const browser = await chromium.launch({ headless: false, slowMo: 500 }); 
@@ -58,5 +58,5 @@ async function globalSetup(config: FullConfig)
     console.log(`Storage state saved to - ${chromium.name()}.json`);
     await page.close();
 }
-
+ */
 export default globalSetup;

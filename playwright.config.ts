@@ -8,7 +8,7 @@ const baseURLMap: Record<string, string> = {
 };
 const baseURL = baseURLMap[ENV] ?? baseURLMap.dev;
 
-/**
+/** CIN): U72200KA2002PTC030427 
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
@@ -52,20 +52,20 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
-    //  {
-    //   name: 'chromium',
-    //   use: { ...devices['Desktop Chrome'], storageState: 'state-chromium.json' },
-    // },
+     {
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'], storageState: 'state-chromium.json' },
+    },
 
-    // {
-    //   name: 'firefox',
-    //   use: { ...devices['Desktop Firefox'], storageState: 'state-firefox.json' },
-    // },
+    {
+      name: 'firefox',
+      use: { ...devices['Desktop Firefox'], storageState: 'state-firefox.json' },
+    },
 
-    // {
-    //   name: 'webkit',
-    //   use: { ...devices['Desktop Safari'], storageState: 'state-webkit.json' },
-    // }, 
+    {
+      name: 'webkit',
+      use: { ...devices['Desktop Safari'], storageState: 'state-webkit.json' },
+    }, 
 
     /* Test against mobile viewports. */
     // {
@@ -82,11 +82,11 @@ export default defineConfig({
     //   name: 'Microsoft Edge',
     //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
     // },
-    {
-       name: 'Google Chrome',
-       use: { ...devices['Desktop Chrome'], channel: 'chrome',headless:false }
+    // {
+    //    name: 'Google Chrome',
+    //    use: { ...devices['Desktop Chrome'], channel: 'chrome',headless:false }
        
-     },
+    //  },
   ],
 
   /* Run your local dev server before starting the tests */
